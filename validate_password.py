@@ -10,7 +10,31 @@ def validate_password(password: str) -> bool:
 
     TODO: Implement logic to check all these conditions and return True if valid, otherwise False.
     """
-    return False
+    
+    if len(password) < 8:
+        return False
+
+    upper = False
+    lower = False
+    digit = False
+    special = False
+
+    special_characters = "!@#$%^&*()-_=+[]}{|;:'\",.<>?/`~"
+
+    for char in password:
+        if char >= 'A' and char <= 'Z':
+            upper = True
+        elif char >= 'a' and char <= 'z':
+            lower = True
+        elif char >= '0' and char <= '9':
+            digit = True
+        elif char in special_characters:
+            special = True
+
+    if upper and lower and digit and special:
+        return True
+    else:
+        return False
 
 
 # Question 2
@@ -27,4 +51,27 @@ def password_strength(password: str) -> str:
     TODO: Implement the function to return one of these three strings.
     """
 
-    return ""
+    if len(password) < 8:
+        return "Weak"
+
+    upper = False
+    lower = False
+    digit = False
+    special = False
+
+    special_characters = "!@#$%^&*()-_=+[]}{|;:'\",.<>?/`~"
+
+    for char in password:
+        if char >= 'A' and char <= 'Z':
+            upper = True
+        elif char >= 'a' and char <= 'z':
+            lower = True
+        elif char >= '0' and char <= '9':
+            digit = True
+        elif char in special_characters:
+            special = True
+
+    if upper and lower and digit and special:
+        return "Strong"
+    else:
+        return "Moderate"
